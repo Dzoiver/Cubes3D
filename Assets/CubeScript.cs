@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CubeScript : MonoBehaviour
 {
-    public static float speed = 1f;
-    public static float timeUntilRespawn = 2f;
-    public static float deleteDistance = 6f;
+    public float Speed = 3f;
+    public float RespawnTime = 2f;
+    public float Distance = 10f;
     float currentTime = 0f;
-    MeshRenderer mesh;
+    public MeshRenderer mesh;
     Vector3 startingPos = new Vector3();
     void Start()
     {
@@ -25,14 +25,14 @@ public class CubeScript : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(0, -speed * Time.deltaTime, 0);
-        if (Vector3.Distance(transform.position, startingPos) > deleteDistance)
+        transform.Translate(0, -Speed * Time.deltaTime, 0);
+        if (Vector3.Distance(transform.position, startingPos) > Distance)
         {
             mesh.enabled = false;
             currentTime += Time.deltaTime;
         }
 
-        if (currentTime > timeUntilRespawn)
+        if (currentTime > RespawnTime)
         {
             Respawn();
         }
