@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class CubeScript : MonoBehaviour
 {
-    public static float speed = 3f;
+    public static float speed = 1f;
     public static float timeUntilRespawn = 2f;
-    public static float deleteDistance = 10f;
+    public static float deleteDistance = 6f;
     float currentTime = 0f;
     MeshRenderer mesh;
     Vector3 startingPos = new Vector3();
-    // Start is called before the first frame update
     void Start()
     {
         startingPos = transform.position;
@@ -24,12 +23,10 @@ public class CubeScript : MonoBehaviour
         mesh.enabled = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.Translate(speed * Time.deltaTime, 0, 0);
-
-        if (transform.position.magnitude > deleteDistance)
+        transform.Translate(0, -speed * Time.deltaTime, 0);
+        if (Vector3.Distance(transform.position, startingPos) > deleteDistance)
         {
             mesh.enabled = false;
             currentTime += Time.deltaTime;
